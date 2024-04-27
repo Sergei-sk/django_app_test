@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% comment %} <ul>
+    {% for item in point %}
+        {% if item.url %}<li><a href='{{ item.url }}'>{{ item }}</li>
+        {% elif item.name %}<li><a href='{{ item.name }}'>{{ item }}</li>
+        {% else %}{% include 'menu/menu.html' with menu=item %}
+        {% endif %}
+    {% endfor %}
+    <h3><a href={% url 'menu:main_menu' %}>В главное меню</h3>
+</ul> {% endcomment %}
+{% comment %} {% load show_menu %}
+<ul>
+    {% for child in point %}
+    <li> <a href="{{ child.url }}">{{ child }}</a></li>
+        {% if child.children.count > 0 %}
+        {% show_menu child %}
+        {% endif %}
+    {% endfor %}
+    <h3><a href={% url 'menu:main_menu' %}>В главное меню</h3>
+</ul> {% endcomment %}
+
+{% block content %}
+{% load show_menu %}
+<ul>
+{% for person in point %}
+  <li> <a href="{{ person.id }}">{{ person }}</a> {% show_menu person %}</li>
+  {% comment %} {% show_menu 'main_menu' %} {% endcomment %}
+{% endfor %}</ul>
+{% endblock %}
+<h3><a href={% url 'menu:main_menu' %}>В главное меню</h3>

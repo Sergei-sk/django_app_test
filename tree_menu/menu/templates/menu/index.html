@@ -1,0 +1,13 @@
+{% comment %} {% load show_menu %} {% endcomment %}
+
+{% if menus %}
+    <ul>
+        {% for menu in menus %}
+            <li><a href={% url 'menu:draw' menu.name %}>{{ menu.name }}</li>
+        {% endfor %}
+    </ul>    
+{% comment %} {% elif menu_name %} {% endcomment %}
+    {% comment %} <h3><a href={% url 'menu:main_menu' %}>В главное меню</h3> {% endcomment %}
+    
+{% endif %}
+{% comment %} {% draw_menu menu_name menu_item %} {% endcomment %}
